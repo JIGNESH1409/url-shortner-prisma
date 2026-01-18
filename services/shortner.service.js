@@ -1,6 +1,9 @@
-import {PrismaClient} from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
+
+
+
 
 
 export const LoadFile = async () => {
@@ -38,7 +41,7 @@ export const loadLinks = async ({ originalUrl, finalshort }) => {
     return addLink;
 };
 
-export { prisma };
+export default prisma;
 
 
 
