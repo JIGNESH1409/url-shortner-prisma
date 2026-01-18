@@ -1,48 +1,122 @@
-🔗 URL Shortener (live demo-https://url-shortner-5-ag8u.onrender.com/)
+🔗 URL Shortener Backend (Node.js + Prisma)
 
-A simple URL Shortener web application built using Node.js and Express.js.
-This project allows users to convert long URLs into short, easy-to-share links and redirects users to the original URL when the shortened link is accessed.
+A backend service that allows users to generate short URLs and redirect them to the original long URLs.
+Built using Node.js, Express, Prisma ORM, and MySQL, and deployed on Railway.
 
-📌 Features
+🌐 Live Application:
+https://url-shortner-prisma-production.up.railway.app/
 
-Generate short URLs from long URLs
+🚀 Features
+
+Generate short URLs for long links
 
 Redirect short URLs to the original URL
 
-Prevents duplicate short codes
+Persist URL mappings using MySQL
 
-Displays all shortened URLs
+RESTful API design
 
-Simple and clean UI
+Production-ready deployment on Railway
 
-Server-side rendering using HTML templates
-
-🛠 Tech Stack
+🛠️ Tech Stack
 
 Backend: Node.js, Express.js
 
-Frontend: HTML, CSS
+Database: MySQL
 
-Data Storage: In-memory object / JSON (can be extended to DB)
+ORM: Prisma
+
+Deployment: Railway
+
+Version Control: Git & GitHub
 
 📂 Project Structure
-url-shortener/
-│
+├── prisma/
+│   └── schema.prisma
+├── controllers/
+├── services/
+├── routes/
 ├── app.js
-├── views/
-│   └── index.html
-├── public/
-│   └── style.css
+├── package.json
 └── README.md
 
-⚙️ How It Works
+⚙️ Environment Variables
 
-User enters a long URL
+The application uses the following environment variable:
 
-Server generates a unique short code
-
-Short URL is created and stored
-
-When the short URL is accessed, the server redirects to the original URL
+DATABASE_URL=mysql://user:password@host:port/database
 
 
+In production, this variable is securely managed using Railway environment variables.
+
+🧪 API Endpoints
+🔹 Create Short URL
+
+POST
+
+/shorten
+
+
+Request Body
+
+{
+  "url": "https://example.com"
+}
+
+
+Response
+
+{
+  "shortUrl": "https://url-shortner-prisma-production.up.railway.app/abc123"
+}
+
+🔹 Redirect to Original URL
+
+GET
+
+/:shortCode
+
+
+Redirects the user to the original long URL associated with the short code.
+
+🌐 Deployment Details
+
+The application is deployed on Railway.
+
+Deployment highlights:
+
+Uses process.env.PORT for dynamic port binding
+
+Prisma Client is generated during build
+
+Database schema is synchronized using prisma db push
+
+MySQL database hosted and managed via Railway
+
+🔒 Data Visibility Note
+
+In the current version:
+
+URLs are stored globally
+
+Recently created URLs may be visible to all users
+
+This design keeps the project simple and focused on backend fundamentals.
+The architecture is extensible and can be enhanced with authentication to scope URLs per user.
+
+🧠 Future Improvements
+
+Add user authentication (JWT / sessions)
+
+Restrict URL visibility per user
+
+Add rate limiting and validation
+
+Add analytics (click count, expiration)
+
+Build a frontend interface
+
+👨‍💻 Author
+
+Jignesh Pampaniya
+GitHub: https://github.com/JIGNESH1409
