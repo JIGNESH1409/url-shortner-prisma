@@ -1,4 +1,4 @@
-import { LoadFile } from "../model/Shortner.model.js";
+import { LoadFile } from "../services/shortner.service.js";
 
 export const UpdateShortnerController = async (req, res) => {
     try {

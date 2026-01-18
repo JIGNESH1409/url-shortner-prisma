@@ -1,11 +1,12 @@
 import crypto from "crypto";
-import { loadLinks, getLinkbyShorturl } from "../model/Shortner.model.js";
+import { getLinkbyShorturl, loadLinks } from "../services/shortner.service.js";
 
 export const postShortnerController = async (req, res) => {
     try {
-        const { url, urlshorten } = req.body;
+        const { url: originalUrl, urlshorten } = req.body;
 
-        if (!url) {
+
+        if (!originalUrl) {
             return res.status(400).send("URL is required");
         }
 
@@ -23,7 +24,7 @@ export const postShortnerController = async (req, res) => {
             return res.status(400).send("Custom shortcode already in use");
         }
 
-        await loadLinks({ url, finalshort });
+        await loadLinks({ originalUrl, finalshort });
         return res.redirect("/");
     } catch (err) {
         console.error(err);

@@ -1,4 +1,4 @@
-import { getLinkbyShorturl } from "../model/Shortner.model.js";
+import { getLinkbyShorturl } from "../services/shortner.service.js";
 
 export const RendertoshortUrlController = async (req, res) => {
     try {
@@ -14,7 +14,7 @@ export const RendertoshortUrlController = async (req, res) => {
             return res.status(404).send("Short url not found");
         }
 
-        return res.redirect(link.url);
+        return res.redirect(link.originalUrl);
     } catch (err) {
         console.error(err);
         return res.status(500).send("Internal Server Error");
