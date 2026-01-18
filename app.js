@@ -12,11 +12,16 @@ app.set("view engine", "ejs");
 app.set("views", path.join(process.cwd(), "views"));
 app.use("/", shorturlRouter);
 
+app.get("/", (req, res) => {
+  res.send("URL Shortener API is running");
+});
+
 
 
 app.use(shorturlRouter);
 
-const PORT = process.env.PORT || 3002;
-app.listen(PORT, "0.0.0.0", () => {
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
